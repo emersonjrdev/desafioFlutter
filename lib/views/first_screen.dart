@@ -10,8 +10,7 @@ class _FirstScreenState extends State<FirstScreen> {
   final _formKey = GlobalKey<FormState>();
   String? name;
   String? email;
-  String? phone;
-  String? address;
+  String? password;
   bool isMale = false;
   bool isFemale = false;
 
@@ -24,8 +23,7 @@ class _FirstScreenState extends State<FirstScreen> {
       final newUser = {
         'name': name!,
         'email': email!,
-        'phone': phone!,
-        'address': address!,
+        'password': password!,
         'isMale': isMale,
       };
 
@@ -110,26 +108,15 @@ class _FirstScreenState extends State<FirstScreen> {
                 },
               ),
               TextFormField(
-                decoration: InputDecoration(labelText: 'Telefone'),
-                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(labelText: 'Senha'),
+                keyboardType: TextInputType.visiblePassword,
+                obscureText: true, // Isso faz com que a senha fique oculta
                 onSaved: (value) {
-                  phone = value;
+                  password = value;
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Por favor, insira seu telefone';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                decoration: InputDecoration(labelText: 'Endereço'),
-                onSaved: (value) {
-                  address = value;
-                },
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor, insira seu endereço';
+                    return 'Por favor, insira sua senha';
                   }
                   return null;
                 },

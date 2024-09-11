@@ -10,6 +10,7 @@ class SecondScreen extends StatefulWidget {
 }
 
 class _SecondScreenState extends State<SecondScreen> {
+  // Função para excluir o usuário
   void _deleteUserData(BuildContext context, Map<String, dynamic> user) {
     setState(() {
       widget.userData.remove(user);
@@ -17,6 +18,13 @@ class _SecondScreenState extends State<SecondScreen> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('Os dados do usuário foram excluídos!')),
     );
+  }
+
+  // Função para exibir a senha mascarada
+  String _maskPassword(String password) {
+    return '*' *
+        password
+            .length; // Mostra uma máscara com o mesmo número de caracteres da senha
   }
 
   @override
@@ -70,12 +78,9 @@ class _SecondScreenState extends State<SecondScreen> {
                       'Email: ${user['email']}',
                       style: TextStyle(fontSize: 18),
                     ),
+                    // Exibindo a senha mascarada
                     Text(
-                      'Telefone: ${user['phone']}',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                    Text(
-                      'Endereço: ${user['address']}',
+                      'Senha: ${_maskPassword(user['password'])}',
                       style: TextStyle(fontSize: 18),
                     ),
                   ],
